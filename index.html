@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sem Contexto — O jogo onde a pior resposta pode ser a melhor</title>
+    <meta name="description" content="Sem Contexto é um jogo de cartas multiplayer gratuito para jogar com até 12 amigos. Baixe a versão 3D para Windows ou jogue a versão Web direto no navegador, inclusive no celular.">
+    <meta name="theme-color" content="#0c0c0a">
+    <link rel="icon" type="image/svg+xml" href="assets/img/icone.svg">
+
+    <meta property="og:title" content="Sem Contexto — O jogo onde a pior resposta pode ser a melhor">
+    <meta property="og:description" content="Jogo de cartas multiplayer gratuito. Versão 3D para PC (em breve na Steam) e versão Web para celular e navegador.">
+    <meta property="og:image" content="https://pedrords3.github.io/sem-contexto/assets/midias/telas/mesa-praia.jpg">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <script src="assets/js/midias.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#conteudo" data-en="Skip to content">Pular para o conteúdo</a>
+
+    <!-- Intro -->
+    <div class="intro" aria-hidden="true">
+        <div class="intro__inner">
+            <div>
+                <span class="intro__kicker" data-en="Shuffling the cards…">Embaralhando as cartas…</span>
+                <span class="intro__name">Sem Contexto</span>
+            </div>
+            <span class="intro__count">000</span>
+        </div>
+        <div class="intro__bar"><i></i></div>
+    </div>
+
+    <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a class="brand" href="#inicio" aria-label="Sem Contexto — início">
+            <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                <rect x="7" y="9" width="34" height="46" rx="7" fill="#fff" stroke="#171717" stroke-width="4" transform="rotate(-10 24 32)" />
+                <rect x="21" y="7" width="34" height="46" rx="7" fill="#171717" stroke="#eefe42" stroke-width="1.5" transform="rotate(8 38 30)" />
+                <path d="M32.5 23.5a6 6 0 1 1 8.6 5.4c-2 1-3.1 2.3-3.1 4.6v1.2" fill="none" stroke="#eefe42" stroke-width="4.4" stroke-linecap="round" transform="rotate(8 38 30)" />
+                <circle cx="38" cy="41.5" r="2.7" fill="#eefe42" transform="rotate(8 38 30)" />
+            </svg>
+            <span class="brand__text"><small>Sem</small>Contexto</span>
+        </a>
+
+        <nav class="nav" id="nav" aria-label="Principal">
+            <a href="#sobre" data-en="The game">O jogo</a>
+            <a href="#versoes" data-en="Versions">Versões</a>
+            <a href="#telas" data-en="Screens">Telas</a>
+            <a href="#bastidores" data-en="Behind the scenes">Bastidores</a>
+            <a href="#como-jogar" data-en="How to play">Como jogar</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="header-actions">
+            <span class="status"><i></i><span data-en="v1.0 · free">v1.0 · grátis</span></span>
+            <button class="lang-toggle" type="button" aria-label="Mudar idioma / Change language">
+                <span class="is-active" data-lang="pt">PT</span><span data-lang="en">EN</span>
+            </button>
+            <a class="header-cta" href="#download" data-cursor="Jogar"><span data-en="Play">Jogar</span><i class="bi bi-arrow-down-right"></i></a>
+            <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+                <span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="conteudo">
+
+        <!-- Hero -->
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="hero__grid" aria-hidden="true"></div>
+
+            <div class="hero__top">
+                <p class="eyebrow hero-fade" data-en="Multiplayer card game">Jogo de cartas multiplayer</p>
+                <p class="eyebrow hero-fade" data-en="Version 1.0 — Free">Versão 1.0 — Grátis</p>
+            </div>
+
+            <h1 class="hero__title" id="hero-title">
+                <span class="line"><span class="split">Sem</span></span>
+                <span class="line line--outline"><span class="split">Contexto</span></span>
+            </h1>
+
+            <div class="hero__deck hero-fade" data-parallax="30">
+                <button class="deck" type="button" aria-label="Embaralhar as cartas" data-cursor="Embaralhar">
+                    <span class="play-card play-card--question">
+                        <span class="play-card__brand">Sem contexto</span>
+                        <span class="play-card__text" id="deckQuestion">Minha avó ficou famosa na internet por causa de ______.</span>
+                        <b>?</b>
+                    </span>
+                    <span class="play-card play-card--answer">
+                        <span class="play-card__text" id="deckAnswer">uma figurinha fora de contexto</span>
+                        <b>!</b>
+                    </span>
+                </button>
+                <span class="deck__hint" data-en="Tap to shuffle">Toque para embaralhar</span>
+            </div>
+
+            <div class="hero__bottom">
+                <div class="hero__copy hero-fade">
+                    <p class="hero__slogan" data-en="The game where the <mark>worst answer</mark> might be the best one.">O jogo onde a <mark>pior resposta</mark> pode ser a melhor.</p>
+                    <p class="hero__lead" data-en="Sit at the table with up to 12 friends, complete absurd sentences with the most clueless card in your hand and let the table vote. In 3D on PC, or right in your phone's browser.">Sente à mesa com até 12 amigos, complete frases absurdas com a carta mais sem noção da mão e deixe a mesa votar. Em 3D no PC ou direto no navegador do celular.</p>
+                </div>
+                <div class="hero__ctas hero-fade">
+                    <a class="btn btn--accent" href="https://github.com/pedrords3/meuPortfolio/releases/latest/download/SemContexto3D-Windows.zip" data-cursor="Baixar"><i class="bi bi-windows"></i><span data-en="Download for PC">Baixar para PC</span></a>
+                    <a class="btn btn--ghost" href="https://sem-contexto.onrender.com/" target="_blank" rel="noopener" data-cursor="Jogar"><i class="bi bi-phone"></i><span data-en="Play on the Web">Jogar na Web</span></a>
+                </div>
+            </div>
+
+            <a class="scroll-cue hero-fade" href="#sobre" aria-label="Rolar para baixo">
+                <span data-en="Scroll">Role</span><i></i>
+            </a>
+        </section>
+
+        <!-- Ticker -->
+        <div class="ticker" aria-hidden="true">
+            <div class="ticker__track">
+                <span>Multiplayer</span><b>✦</b><span data-en="Up to 12 at the table">Até 12 na mesa</span><b>✦</b><span data-en="4 bars">4 bares</span><b>✦</b><span>Casual &amp; +18</span><b>✦</b><span>Windows</span><b>✦</b><span data-en="Phone">Celular</span><b>✦</b><span data-en="Browser">Navegador</span><b>✦</b><span data-en="100% free">100% grátis</span><b>✦</b><span data-en="Coming soon to Steam">Em breve na Steam</span><b>✦</b>
+            </div>
+        </div>
+
+        <!-- O jogo -->
+        <section class="about section" id="sobre" aria-labelledby="about-title">
+            <div class="section-label">
+                <span>01</span>
+                <h2 id="about-title" data-en="The game">O jogo</h2>
+            </div>
+
+            <p class="statement" data-words data-en="Someone reads a sentence with a blank. Everyone fills it with the most absurd card in their hand. The table votes, and the worst answer almost always wins.">Alguém lê uma frase com uma lacuna. Todo mundo completa com a carta mais absurda da mão. A mesa vota, e a pior resposta quase sempre ganha.</p>
+
+            <div class="stats">
+                <div class="stat reveal">
+                    <strong><span data-counter="12">0</span></strong>
+                    <span data-en="players per table">jogadores por mesa</span>
+                </div>
+                <div class="stat reveal">
+                    <strong><span data-counter="12">0</span></strong>
+                    <span data-en="3D characters">personagens 3D</span>
+                </div>
+                <div class="stat reveal">
+                    <strong><span data-counter="4">0</span></strong>
+                    <span data-en="bars to play in">bares para jogar</span>
+                </div>
+                <div class="stat reveal">
+                    <strong><small>R$</small>0</strong>
+                    <span data-en="to play, both versions">para jogar, nas duas versões</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Versões -->
+        <section class="versions section" id="versoes" aria-labelledby="versions-title">
+            <div class="section-label">
+                <span>02</span>
+                <h2 data-en="Two ways to play">Duas formas de jogar</h2>
+            </div>
+
+            <div class="versions__head reveal">
+                <h3 class="big-title" id="versions-title" data-en="Pick your<br><em>table.</em>">Escolha<br><em>sua mesa.</em></h3>
+                <p data-en="Sem Contexto has two independent versions, both free. The <strong>3D version</strong> is the full platform game for PC. The <strong>Web version</strong> is an alternative, lighter take that runs in any browser — including your phone.">O Sem Contexto tem duas versões independentes, e as duas são gratuitas. A <strong>versão 3D</strong> é o jogo de plataforma completo, para PC. A <strong>versão Web</strong> é uma alternativa mais leve, que roda em qualquer navegador — inclusive no celular.</p>
+            </div>
+
+            <div class="versions__grid">
+                <article class="version version--pc reveal">
+                    <button class="version__media view-media-btn" type="button" data-project="pc" data-project-name="Sem Contexto 3D" data-index="2" data-cursor="Ver">
+                        <img src="assets/midias/telas/menu-pub.jpg" alt="Menu principal da versão 3D dentro do Pub" loading="lazy" width="1429" height="811">
+                        <span class="version__tag"><i class="bi bi-windows"></i> PC · Windows</span>
+                    </button>
+                    <div class="version__body">
+                        <p class="eyebrow" data-en="Platform version">Versão de plataforma</p>
+                        <h4 class="version__title">Sem Contexto <span>3D</span></h4>
+                        <p class="version__desc" data-en="The complete experience: you sit at a real table in a 3D bar, as one of 12 animal characters, and see your friends react in real time.">A experiência completa: você senta numa mesa de verdade, em um bar 3D, na pele de um dos 12 personagens animais, e vê os amigos reagindo em tempo real.</p>
+                        <ul class="version__list">
+                            <li><i class="bi bi-check2"></i><span data-en="4 bars: Boteco, Pub, Retro 80s and Beach">4 bares: Boteco, Pub, Retrô 80 e Praia</span></li>
+                            <li><i class="bi bi-check2"></i><span data-en="Facial expressions, drinks and snacks at the table">Expressões faciais, bebida e petisco na mesa</span></li>
+                            <li><i class="bi bi-check2"></i><span data-en="Bots fill the empty seats">Bots completam as cadeiras vazias</span></li>
+                        </ul>
+                        <div class="version__actions">
+                            <a class="btn btn--warm" href="https://github.com/pedrords3/meuPortfolio/releases/latest/download/SemContexto3D-Windows.zip" data-cursor="Baixar"><i class="bi bi-download"></i><span data-en="Free download">Baixar grátis</span></a>
+                            <span class="soon"><i class="bi bi-steam"></i><span data-en="Coming soon to Steam">Em breve na Steam</span></span>
+                        </div>
+                        <small class="version__specs">Windows 10/11 · 64-bit · .zip 109 MB</small>
+                    </div>
+                </article>
+
+                <article class="version version--web reveal">
+                    <button class="version__media view-media-btn" type="button" data-project="web" data-project-name="Sem Contexto Web" data-index="0" data-cursor="Ver">
+                        <img src="assets/midias/web/inicio.jpg" alt="Tela inicial da versão Web com cartas e salas abertas" loading="lazy" width="1263" height="901">
+                        <span class="version__tag"><i class="bi bi-phone"></i> <span data-en="Phone · Browser">Celular · Navegador</span></span>
+                    </button>
+                    <div class="version__body">
+                        <p class="eyebrow" data-en="Alternative version">Versão alternativa</p>
+                        <h4 class="version__title">Sem Contexto <span>Web</span></h4>
+                        <p class="version__desc" data-en="A 2D take on the same game, designed for the phone. Open the link, pick a name and play — nothing to install.">Uma versão 2D do mesmo jogo, pensada para o celular. Abra o link, escolha um nome e jogue — sem instalar nada.</p>
+                        <ul class="version__list">
+                            <li><i class="bi bi-check2"></i><span data-en="Works on phone, tablet and computer">Funciona no celular, tablet e computador</span></li>
+                            <li><i class="bi bi-check2"></i><span data-en="Invite by link or QR Code, private rooms with password">Convite por link ou QR Code, sala privada com senha</span></li>
+                            <li><i class="bi bi-check2"></i><span data-en="Stickers, chat and customizable characters">Figurinhas, chat e personagem personalizável</span></li>
+                        </ul>
+                        <div class="version__actions">
+                            <a class="btn btn--accent" href="https://sem-contexto.onrender.com/" target="_blank" rel="noopener" data-cursor="Jogar"><i class="bi bi-play-fill"></i><span data-en="Play now">Jogar agora</span></a>
+                            <span class="soon soon--ok"><i class="bi bi-lightning-charge"></i><span data-en="No install">Sem instalar</span></span>
+                        </div>
+                        <small class="version__specs" data-en="Any modern browser · Android, iPhone, PC">Qualquer navegador moderno · Android, iPhone, PC</small>
+                    </div>
+                </article>
+            </div>
+
+            <div class="compare reveal">
+                <table>
+                    <caption class="visually-hidden" data-en="Comparison between the 3D and Web versions">Comparação entre as versões 3D e Web</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><span class="visually-hidden" data-en="Feature">Recurso</span></th>
+                            <th scope="col"><i class="bi bi-windows"></i> 3D</th>
+                            <th scope="col"><i class="bi bi-phone"></i> Web</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row" data-en="Runs on">Onde roda</th><td data-en="Windows 10/11 (PC)">Windows 10/11 (PC)</td><td data-en="Any browser, phone included">Qualquer navegador, inclusive celular</td></tr>
+                        <tr><th scope="row" data-en="Install">Instalação</th><td data-en="Download the .zip (109 MB)">Baixar o .zip (109 MB)</td><td data-en="None, just open the link">Nenhuma, é só abrir o link</td></tr>
+                        <tr><th scope="row" data-en="Look">Visual</th><td data-en="3D: animal characters and bars">3D: personagens animais e bares</td><td data-en="2D: cards and illustrated characters">2D: cartas e personagens ilustrados</td></tr>
+                        <tr><th scope="row" data-en="Players">Jogadores</th><td data-en="Up to 12, bots fill the table">Até 12, bots completam a mesa</td><td data-en="Up to 12 per room">Até 12 por sala</td></tr>
+                        <tr><th scope="row" data-en="Modes">Modos</th><td>Casual · +18</td><td>Casual · +18</td></tr>
+                        <tr><th scope="row" data-en="Extras">Extras</th><td data-en="Expressions, drinks, snacks, look around">Expressões, bebida, petisco, olhar em volta</td><td data-en="Stickers, chat, link and QR Code">Figurinhas, chat, link e QR Code</td></tr>
+                        <tr><th scope="row" data-en="Price">Preço</th><td><strong data-en="Free">Grátis</strong></td><td><strong data-en="Free">Grátis</strong></td></tr>
+                    </tbody>
+                </table>
+                <p class="compare__note"><i class="bi bi-info-circle"></i><span data-en="The two versions don't share rooms: everyone at the table needs to be on the same version.">As duas versões não se misturam: todo mundo da mesa precisa estar na mesma versão.</span></p>
+            </div>
+        </section>
+
+        <!-- Sem Contexto 3D -->
+        <section class="game" id="telas" aria-labelledby="game-title">
+            <div class="game__glow" aria-hidden="true"></div>
+
+            <div class="section">
+                <div class="section-label">
+                    <span>03</span>
+                    <h2 data-en="3D version · PC">Versão 3D · PC</h2>
+                </div>
+
+                <div class="game__title-wrap reveal">
+                    <div>
+                        <p class="eyebrow eyebrow--warm">Unity 6 · Windows · <span data-en="Steam soon">Steam em breve</span></p>
+                        <h3 class="game__title" id="game-title">Sem<br>Contexto <span>3D</span></h3>
+                    </div>
+                    <p class="game__lead" data-en="Each round you're at the table: you look around, see who's thinking, react with your face and steal a snack while the others decide.">A cada rodada você está na mesa: olha em volta, vê quem está pensando, reage com a cara e rouba um petisco enquanto os outros decidem.</p>
+                </div>
+
+                <div class="shots">
+                    <div class="shots__head reveal">
+                        <p class="eyebrow eyebrow--warm" data-en="Version 1.0 / Screens">Versão 1.0 / Telas</p>
+                        <p class="shots__hint" data-en="Click to enlarge">Clique para ampliar</p>
+                    </div>
+                    <div class="shots__grid">
+                        <button class="shot shot--main view-media-btn reveal" type="button" data-project="pc" data-project-name="Sem Contexto 3D" data-index="0" data-cursor="Ver">
+                            <img src="assets/midias/telas/mesa-praia.jpg" alt="Doze personagens jogando cartas em uma mesa no quiosque da praia" loading="lazy" width="1283" height="810">
+                            <span data-en="Beach kiosk · 12 players at the table">Quiosque da Praia · 12 jogadores na mesa</span>
+                        </button>
+                        <button class="shot shot--tall view-media-btn reveal" type="button" data-project="pc" data-project-name="Sem Contexto 3D" data-index="4" data-cursor="Ver">
+                            <img src="assets/midias/telas/touro-cartas.jpg" alt="Personagem Touro segurando suas cartas" loading="lazy" width="577" height="694">
+                            <span data-en="The Bull and his cards">O Touro e suas cartas</span>
+                        </button>
+                        <button class="shot view-media-btn reveal" type="button" data-project="pc" data-project-name="Sem Contexto 3D" data-index="1" data-cursor="Ver">
+                            <img src="assets/midias/telas/partida-boteco.jpg" alt="Partida no Boteco com a frase da rodada e o placar" loading="lazy" width="1434" height="809">
+                            <span data-en="A match at the Boteco">Partida no Boteco</span>
+                        </button>
+                        <button class="shot view-media-btn reveal" type="button" data-project="pc" data-project-name="Sem Contexto 3D" data-index="2" data-cursor="Ver">
+                            <img src="assets/midias/telas/menu-pub.jpg" alt="Menu principal do jogo dentro do Pub" loading="lazy" width="1429" height="811">
+                            <span data-en="Home menu at the Pub">Menu inicial no Pub</span>
+                        </button>
+                        <button class="shot view-media-btn reveal" type="button" data-project="pc" data-project-name="Sem Contexto 3D" data-index="3" data-cursor="Ver">
+                            <img src="assets/midias/telas/sala-praia.jpg" alt="Sala de espera com código, escolha de bar, modo e rodadas" loading="lazy" width="1429" height="802">
+                            <span data-en="Room setup: bar, mode and rounds">Sala: bar, modo e rodadas</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- A turma -->
+                <div class="crew reveal">
+                    <div class="crew__text">
+                        <p class="eyebrow eyebrow--warm" data-en="The crew">A turma</p>
+                        <h4 class="crew__title" data-en="12 characters,<br><em>zero composure.</em>">12 personagens,<br><em>zero compostura.</em></h4>
+                        <p data-en="Each one has their own style, outfit and 8 expressions you trigger with the keyboard: yes, no, huh?, laugh, wink, eyebrow, smile and scare.">Cada um tem seu estilo, sua roupa e 8 expressões que você dispara pelo teclado: sim, não, hã?, risada, piscadinha, sobrancelha, sorriso e susto.</p>
+                    </div>
+                    <ul class="faces" aria-label="Algumas expressões dos personagens">
+                        <li><img src="assets/midias/expressoes/gata-risada.jpg" alt="" loading="lazy" width="560" height="560"><span data-en="Cat · laugh">Gata · risada</span></li>
+                        <li><img src="assets/midias/expressoes/capivara-piscadinha.jpg" alt="" loading="lazy" width="560" height="560"><span data-en="Capybara · wink">Capivara · piscadinha</span></li>
+                        <li><img src="assets/midias/expressoes/touro-bebado.jpg" alt="" loading="lazy" width="560" height="560"><span data-en="Bull · third beer">Touro · 3ª cerveja</span></li>
+                        <li><img src="assets/midias/expressoes/lobo-susto.jpg" alt="" loading="lazy" width="560" height="560"><span data-en="Wolf · scare">Lobo · susto</span></li>
+                        <li><img src="assets/midias/expressoes/coelha-sorriso.jpg" alt="" loading="lazy" width="560" height="560"><span data-en="Bunny · smile">Coelha · sorriso</span></li>
+                        <li><img src="assets/midias/expressoes/cachorro-lingua.jpg" alt="" loading="lazy" width="560" height="560"><span data-en="Dog · tongue out">Cachorro · língua</span></li>
+                    </ul>
+                    <ul class="crew__names" data-en="<li>Bull</li><li>Dog</li><li>Cat</li><li>Capybara</li><li>Frog</li><li>Bunny</li><li>Sloth</li><li>Sheep</li><li>Wolf</li><li>Deer</li><li>Otter</li><li>Fox</li>"><li>Touro</li><li>Cachorro</li><li>Gata</li><li>Capivara</li><li>Sapa</li><li>Coelha</li><li>Preguiça</li><li>Ovelha</li><li>Lobo</li><li>Cerva</li><li>Lontra</li><li>Raposa</li></ul>
+                </div>
+            </div>
+
+            <!-- Recursos -->
+            <div class="features">
+                <article class="feature reveal">
+                    <i class="bi bi-wifi"></i>
+                    <h4 data-en="Online multiplayer">Multiplayer online</h4>
+                    <p data-en="Create a room, share the 5-character code and play with up to 12 people. Reconnection is automatic.">Crie uma sala, passe o código de 5 caracteres e jogue com até 12 pessoas. A reconexão é automática.</p>
+                </article>
+                <article class="feature reveal">
+                    <i class="bi bi-cup-straw"></i>
+                    <h4 data-en="Four bars, two modes">Quatro bares, dois modos</h4>
+                    <p data-en="Boteco, Pub, Retro 80s and Beach, each with its own mood. The host picks the bar, the mode and from 5 to 30 rounds.">Boteco, Pub, Retrô 80 e Praia, cada um com seu clima. O anfitrião escolhe o bar, o modo e de 5 a 30 rodadas.</p>
+                </article>
+                <article class="feature reveal">
+                    <i class="bi bi-emoji-laughing"></i>
+                    <h4 data-en="Presence at the table">Presença na mesa</h4>
+                    <p data-en="Every player's head follows where they look, and expressions, drinks and snacks are synced in real time.">A cabeça de cada jogador acompanha para onde ele olha, e expressões, bebidas e petiscos são sincronizados em tempo real.</p>
+                </article>
+                <article class="feature reveal">
+                    <i class="bi bi-robot"></i>
+                    <h4 data-en="Never an empty seat">Nunca falta gente</h4>
+                    <p data-en="Only two of you? Bots take the empty chairs and play along, so the table is always full.">Só tem vocês dois? Os bots ocupam as cadeiras vazias e jogam junto, e a mesa fica sempre cheia.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sem Contexto Web -->
+        <section class="web" id="web" aria-labelledby="web-title">
+            <div class="section">
+                <div class="section-label">
+                    <span>04</span>
+                    <h2 data-en="Web version · Phone">Versão Web · Celular</h2>
+                </div>
+
+                <div class="web__head reveal">
+                    <div>
+                        <p class="eyebrow eyebrow--ink" data-en="Browser · phone · tablet">Navegador · celular · tablet</p>
+                        <h3 class="web__title" id="web-title">Sem<br>Contexto <span>Web</span></h3>
+                    </div>
+                    <div class="web__intro">
+                        <p data-en="The alternative version, made for whoever is on the phone, in a hurry or on a computer that doesn't run the 3D. Same rules, same humor, a 2D look and everything by touch.">A versão alternativa, feita para quem está no celular, com pressa ou num computador que não roda o 3D. Mesmas regras, mesmo humor, visual 2D e tudo pelo toque.</p>
+                        <a class="btn btn--ink" href="https://sem-contexto.onrender.com/" target="_blank" rel="noopener" data-cursor="Jogar"><span data-en="Open the Web version">Abrir a versão Web</span><i class="bi bi-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="web__grid">
+                    <button class="wshot wshot--wide view-media-btn reveal" type="button" data-project="web" data-project-name="Sem Contexto Web" data-index="2" data-cursor="Ver">
+                        <img src="assets/midias/web/rodada.jpg" alt="Rodada da versão Web com a frase e as cartas do jogador" loading="lazy" width="1600" height="761">
+                        <span data-en="Round: pick the card that ruins the sentence">Rodada: escolha a carta que estraga a frase</span>
+                    </button>
+                    <button class="wshot wshot--side view-media-btn reveal" type="button" data-project="web" data-project-name="Sem Contexto Web" data-index="4" data-cursor="Ver">
+                        <img src="assets/midias/web/figurinha.jpg" alt="Figurinha BRABO enviada durante a partida" loading="lazy" width="750" height="560">
+                        <span data-en="Stickers mid-match">Figurinhas no meio da partida</span>
+                    </button>
+                    <button class="wshot view-media-btn reveal" type="button" data-project="web" data-project-name="Sem Contexto Web" data-index="0" data-cursor="Ver">
+                        <img src="assets/midias/web/inicio.jpg" alt="Tela inicial da versão Web" loading="lazy" width="1263" height="901">
+                        <span data-en="Home and open rooms">Início e salas abertas</span>
+                    </button>
+                    <button class="wshot view-media-btn reveal" type="button" data-project="web" data-project-name="Sem Contexto Web" data-index="1" data-cursor="Ver">
+                        <img src="assets/midias/web/sala.jpg" alt="Sala de espera da versão Web com seis jogadores" loading="lazy" width="1267" height="902">
+                        <span data-en="Room with link and QR Code">Sala com link e QR Code</span>
+                    </button>
+                    <button class="wshot view-media-btn reveal" type="button" data-project="web" data-project-name="Sem Contexto Web" data-index="3" data-cursor="Ver">
+                        <img src="assets/midias/web/resultado.jpg" alt="Resultado da rodada com a resposta vencedora" loading="lazy" width="1600" height="760">
+                        <span data-en="Votes and the winning answer">Votos e a resposta vencedora</span>
+                    </button>
+                </div>
+
+                <ul class="web__chips reveal">
+                    <li><i class="bi bi-phone"></i><span data-en="Built for touch">Feita para o toque</span></li>
+                    <li><i class="bi bi-qr-code"></i><span data-en="Invite by link or QR Code">Convite por link ou QR Code</span></li>
+                    <li><i class="bi bi-lock"></i><span data-en="Private room with password">Sala privada com senha</span></li>
+                    <li><i class="bi bi-sticky"></i><span data-en="Stickers">Figurinhas</span></li>
+                    <li><i class="bi bi-chat-dots"></i><span>Chat</span></li>
+                    <li><i class="bi bi-palette"></i><span data-en="Character color and expression">Cor e expressão do personagem</span></li>
+                    <li><i class="bi bi-stopwatch"></i><span data-en="Timer and scoreboard">Cronômetro e placar</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Bastidores -->
+        <section class="evolution section" id="bastidores" aria-labelledby="evolution-title">
+            <div class="section-label">
+                <span>05</span>
+                <h2 data-en="Behind the scenes">Bastidores</h2>
+            </div>
+
+            <div class="evolution__head reveal">
+                <h3 class="big-title" id="evolution-title" data-en="From prototype<br><em>to version 1.0.</em>">Do protótipo<br><em>à versão 1.0.</em></h3>
+                <div>
+                    <p data-en="Sem Contexto started as capsules around a gray table. Every screenshot here is from the real development, in order.">O Sem Contexto começou como cápsulas em volta de uma mesa cinza. Todos os prints aqui são do desenvolvimento real, em ordem.</p>
+                    <button class="text-link view-media-btn" type="button" data-project="bastidores" data-project-name="Bastidores" data-index="0"><i class="bi bi-images"></i><span data-en="See the whole journey">Ver a evolução completa</span></button>
+                </div>
+            </div>
+
+            <ol class="timeline">
+                <li class="step reveal">
+                    <button class="step__media view-media-btn" type="button" data-project="bastidores" data-project-name="Bastidores" data-index="3" data-cursor="Ver">
+                        <img src="assets/midias/evolucao/prototipo-4.jpg" alt="Protótipo com personagens em forma de cápsula ao redor de uma mesa" loading="lazy" width="1315" height="736">
+                    </button>
+                    <span class="step__n">01</span>
+                    <strong data-en="Prototype">Protótipo</strong>
+                    <p data-en="Capsule characters and a plain table, but the whole loop already ran against bots: question, cards, voting and scoreboard.">Bonecos de cápsula e uma mesa simples, mas o ciclo inteiro já rodava contra bots: pergunta, cartas, votação e placar.</p>
+                </li>
+                <li class="step reveal">
+                    <button class="step__media view-media-btn" type="button" data-project="bastidores" data-project-name="Bastidores" data-index="5" data-cursor="Ver">
+                        <img src="assets/midias/evolucao/boteco-votacao.jpg" alt="Primeira versão do Boteco com cartas de resposta e placar" loading="lazy" width="1319" height="742">
+                    </button>
+                    <span class="step__n">02</span>
+                    <strong data-en="Identity">Identidade</strong>
+                    <p data-en="The first bar, a custom interface, timer, bonus rounds and the first facial expressions.">O primeiro bar, interface própria, cronômetro, rodada bônus e as primeiras expressões faciais.</p>
+                </li>
+                <li class="step reveal">
+                    <button class="step__media step__media--video view-media-btn" type="button" data-project="bastidores" data-project-name="Bastidores" data-index="7" data-cursor="Assistir">
+                        <img src="assets/midias/video/bastidores-editor.jpg" alt="Partida rodando dentro do editor da Unity" loading="lazy" width="1920" height="984">
+                        <i class="bi bi-play-fill" aria-hidden="true"></i>
+                    </button>
+                    <span class="step__n">03</span>
+                    <strong data-en="3D characters">Personagens 3D</strong>
+                    <p data-en="Characters modeled and rigged in Blender start replacing the placeholders, tested live in the editor.">Personagens modelados e riggados no Blender começam a substituir os provisórios, testados ao vivo no editor.</p>
+                </li>
+                <li class="step reveal">
+                    <button class="step__media view-media-btn" type="button" data-project="bastidores" data-project-name="Bastidores" data-index="8" data-cursor="Ver">
+                        <img src="assets/midias/evolucao/pub-editor.jpg" alt="Os doze personagens sentados à mesa do Pub" loading="lazy" width="1387" height="800">
+                    </button>
+                    <span class="step__n">04</span>
+                    <strong data-en="Version 1.0">Versão 1.0</strong>
+                    <p data-en="12 characters, 4 bars, Casual and 18+ modes and an online server. The 3D version is ready for PC.">12 personagens, 4 bares, modos Casual e +18 e servidor online. A versão 3D fica pronta para PC.</p>
+                </li>
+                <li class="step reveal">
+                    <button class="step__media view-media-btn" type="button" data-project="web" data-project-name="Sem Contexto Web" data-index="1" data-cursor="Ver">
+                        <img src="assets/midias/web/sala.jpg" alt="Sala da versão Web" loading="lazy" width="1267" height="902">
+                    </button>
+                    <span class="step__n">05</span>
+                    <strong data-en="Web version">Versão Web</strong>
+                    <p data-en="So nobody gets left out, the game gets a 2D version for the browser that runs on any phone.">Para ninguém ficar de fora, o jogo ganha uma versão 2D para navegador, que roda em qualquer celular.</p>
+                </li>
+                <li class="step step--next reveal">
+                    <div class="step__media step__media--next" aria-hidden="true">
+                        <i class="bi bi-steam"></i>
+                    </div>
+                    <span class="step__n" data-en="Next">Próximo</span>
+                    <strong data-en="Steam">Steam</strong>
+                    <p data-en="The 3D version is on its way to Steam. Until then, the download right here stays free.">A versão 3D está a caminho da Steam. Até lá, o download aqui no site continua gratuito.</p>
+                </li>
+            </ol>
+
+            <div class="stack reveal">
+                <span data-en="Built with">Feito com</span>
+                <ul>
+                    <li>Unity 6 (URP)</li><li>C#</li><li>UI Toolkit</li><li>Blender + Python</li><li>Node.js</li><li>TypeScript</li><li>WebSocket</li><li>Docker</li><li>Render</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Como jogar -->
+        <section class="howto-wrap" id="como-jogar" aria-labelledby="howto-title">
+            <div class="section">
+                <div class="section-label">
+                    <span>06</span>
+                    <h2 data-en="How to play">Como jogar</h2>
+                </div>
+
+                <div class="howto">
+                    <div class="howto__steps">
+                        <h3 class="big-title reveal" id="howto-title" data-en="Four steps<br><em>to the table.</em>">Quatro passos<br><em>até a mesa.</em></h3>
+                        <ol>
+                            <li class="reveal"><span>01</span><div><strong data-en="Open the game">Abra o jogo</strong><p data-en="<em>Web:</em> open the link on your phone or computer. <em>PC:</em> download the .zip, right-click → <em>Extract All</em> and open <code>SemContexto3D.exe</code>."><em>Web:</em> abra o link no celular ou no computador. <em>PC:</em> baixe o .zip, clique com o botão direito → <em>Extrair tudo</em> e abra o <code>SemContexto3D.exe</code>.</p></div></li>
+                            <li class="reveal"><span>02</span><div><strong data-en="Create a room">Crie uma sala</strong><p data-en="Pick your name and character, create the room and choose the mode (Casual or 18+) and the number of rounds.">Escolha nome e personagem, crie a sala e defina o modo (Casual ou +18) e o número de rodadas.</p></div></li>
+                            <li class="reveal"><span>03</span><div><strong data-en="Invite">Convide</strong><p data-en="Share the 5-character room code — on the Web you can also send the link or show the QR Code. Everyone joins on the same version.">Passe o código de 5 caracteres da sala — na Web também dá para mandar o link ou mostrar o QR Code. Todos entram na mesma versão.</p></div></li>
+                            <li class="reveal"><span>04</span><div><strong data-en="Play">Jogue</strong><p data-en="Read the sentence, play the funniest card in your hand and vote for the best answer. Whoever has the most points at the end wins.">Leia a frase, jogue a carta mais engraçada da mão e vote na melhor resposta. Quem tiver mais pontos no final vence.</p></div></li>
+                        </ol>
+                    </div>
+
+                    <aside class="howto__side">
+                        <div class="controls reveal">
+                            <div class="controls__head">
+                                <strong data-en="Controls">Controles</strong>
+                                <div class="tabs" role="tablist" aria-label="Versão">
+                                    <button type="button" role="tab" class="is-active" aria-selected="true" aria-controls="controls-pc" data-tab="controls-pc">PC</button>
+                                    <button type="button" role="tab" aria-selected="false" aria-controls="controls-web" data-tab="controls-web">Web</button>
+                                </div>
+                            </div>
+                            <ul id="controls-pc" role="tabpanel">
+                                <li><span class="keys"><kbd>Mouse</kbd></span><span data-en="look around">olhar em volta</span></li>
+                                <li><span class="keys"><kbd>Ctrl</kbd></span><span data-en="zoom (hold)">zoom (segure)</span></li>
+                                <li><span class="keys"><kbd>1</kbd>–<kbd>8</kbd></span><span data-en="expressions">expressões</span></li>
+                                <li><span class="keys"><kbd>C</kbd></span><span data-en="drink">bebida</span></li>
+                                <li><span class="keys"><kbd>X</kbd></span><span data-en="snack">petisco</span></li>
+                                <li><span class="keys"><kbd>Esc</kbd></span><span>menu</span></li>
+                            </ul>
+                            <ul id="controls-web" role="tabpanel" hidden>
+                                <li><span class="keys"><kbd><i class="bi bi-hand-index"></i></kbd></span><span data-en="tap a card to select">toque na carta para escolher</span></li>
+                                <li><span class="keys"><kbd><i class="bi bi-hand-index"></i></kbd><kbd><i class="bi bi-hand-index"></i></kbd></span><span data-en="tap again to play">toque de novo para jogar</span></li>
+                                <li><span class="keys"><kbd><i class="bi bi-emoji-smile"></i></kbd></span><span data-en="stickers">figurinhas</span></li>
+                                <li><span class="keys"><kbd><i class="bi bi-chat"></i></kbd></span><span>chat</span></li>
+                                <li><span class="keys"><kbd><i class="bi bi-trophy"></i></kbd></span><span data-en="scoreboard">placar</span></li>
+                                <li><span class="keys"><kbd><i class="bi bi-person"></i></kbd></span><span data-en="change color/expression">trocar cor/expressão</span></li>
+                            </ul>
+                        </div>
+                        <div class="note reveal">
+                            <i class="bi bi-shield-exclamation"></i>
+                            <div>
+                                <strong data-en="Windows warning?">Aviso do Windows?</strong>
+                                <p data-en="The game doesn't have a digital signature yet. If “Windows protected your PC” appears, click <em>More info → Run anyway</em>.">O jogo ainda não tem assinatura digital. Se aparecer “O Windows protegeu o computador”, clique em <em>Mais informações → Executar assim mesmo</em>.</p>
+                            </div>
+                        </div>
+                        <div class="note reveal">
+                            <i class="bi bi-hourglass-split"></i>
+                            <div>
+                                <strong data-en="Connection error?">Erro de conexão?</strong>
+                                <p data-en="The server runs on a free plan and sleeps when nobody is playing. Wait about 1 minute and try again.">O servidor roda em plano gratuito e dorme quando ninguém está jogando. Espere cerca de 1 minuto e tente de novo.</p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq section" id="faq" aria-labelledby="faq-title">
+            <div class="section-label">
+                <span>07</span>
+                <h2 id="faq-title" data-en="Frequently asked questions">Perguntas frequentes</h2>
+            </div>
+
+            <div class="faq__wrap">
+                <div class="faq__intro reveal">
+                    <h3 class="big-title" data-en="Any<br><em>questions?</em>">Ficou<br><em>alguma dúvida?</em></h3>
+                    <p data-en="If it's not here, the answer is probably on the table: open the game and try it.">Se não estiver aqui, a resposta provavelmente está na mesa: abra o jogo e teste.</p>
+                </div>
+                <div class="faq__list">
+                    <details class="reveal" open>
+                        <summary data-en="Is it really free?">É grátis mesmo?</summary>
+                        <p data-en="Yes. Today both versions — 3D for PC and Web — are completely free to download and play.">Sim. Hoje as duas versões — a 3D para PC e a Web — são totalmente gratuitas para baixar e jogar.</p>
+                    </details>
+                    <details class="reveal">
+                        <summary data-en="Can someone on PC play with someone on the Web?">Quem está no PC joga com quem está na Web?</summary>
+                        <p data-en="Not for now. They're separate games with separate rooms, so the whole group needs to pick the same version. Rule of thumb: everyone with a computer → 3D; someone on the phone → Web.">Por enquanto não. São jogos separados, com salas separadas, então a turma toda precisa escolher a mesma versão. Regra prática: todo mundo no computador → 3D; alguém no celular → Web.</p>
+                    </details>
+                    <details class="reveal">
+                        <summary data-en="Does it work on the phone?">Funciona no celular?</summary>
+                        <p data-en="The Web version does, on Android and iPhone, straight from the browser. The 3D version is for Windows PCs.">A versão Web sim, no Android e no iPhone, direto pelo navegador. A versão 3D é para PC com Windows.</p>
+                    </details>
+                    <details class="reveal">
+                        <summary data-en="When is it coming to Steam?">Quando chega na Steam?</summary>
+                        <p data-en="The 3D version is coming soon to Steam. The date will be announced here. Until then, you can download it for free from this site.">A versão 3D chega em breve na Steam, e a data vai ser anunciada aqui. Até lá, dá para baixar de graça por este site.</p>
+                    </details>
+                    <details class="reveal">
+                        <summary data-en="Do I need an account?">Preciso criar conta?</summary>
+                        <p data-en="No. Just pick a name and a character and create or join a room.">Não. É só escolher um nome e um personagem e criar ou entrar em uma sala.</p>
+                    </details>
+                    <details class="reveal">
+                        <summary data-en="How many people can play?">Quantas pessoas podem jogar?</summary>
+                        <p data-en="Up to 12 per room. In the 3D version, bots fill the empty seats, so you can play even with few friends.">Até 12 por sala. Na versão 3D, bots ocupam as cadeiras vazias, então dá para jogar mesmo com pouca gente.</p>
+                    </details>
+                    <details class="reveal">
+                        <summary data-en="Is there adult content?">Tem conteúdo adulto?</summary>
+                        <p data-en="Only if the host chooses. The <em>Casual</em> mode has light, everyday humor; the <em>18+</em> mode has edgier humor and is meant for adult groups.">Só se o anfitrião escolher. O modo <em>Casual</em> tem humor leve e do dia a dia; o modo <em>+18</em> tem humor mais ácido e é para grupos adultos.</p>
+                    </details>
+                    <details class="reveal">
+                        <summary data-en="What language is the game in?">Em que idioma é o jogo?</summary>
+                        <p data-en="Brazilian Portuguese — the cards and jokes are written for Brazilians.">Português do Brasil — as cartas e as piadas são escritas para brasileiros.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download -->
+        <section class="cta" id="download" aria-labelledby="cta-title">
+            <div class="cta__inner section">
+                <p class="eyebrow" data-en="Version 1.0 · free">Versão 1.0 · grátis</p>
+                <h2 class="cta__title" id="cta-title" data-en="Pull up<br><em>a chair.</em>">Puxe uma<br><em>cadeira.</em></h2>
+                <p class="cta__lead" data-en="Gather the group, pick a version and get ready for the worst answers.">Junte a turma, escolha a versão e preparem as piores respostas.</p>
+
+                <div class="cta__links">
+                    <a href="https://github.com/pedrords3/meuPortfolio/releases/latest/download/SemContexto3D-Windows.zip" data-cursor="Baixar">
+                        <i class="bi bi-windows"></i><span data-en="Download for PC">Baixar para PC</span><small>Windows 10/11 · .zip 109 MB</small><i class="bi bi-download"></i>
+                    </a>
+                    <a href="https://sem-contexto.onrender.com/" target="_blank" rel="noopener" data-cursor="Jogar">
+                        <i class="bi bi-phone"></i><span data-en="Play on the Web">Jogar na Web</span><small data-en="Phone, tablet or PC · no install">Celular, tablet ou PC · sem instalar</small><i class="bi bi-arrow-up-right"></i>
+                    </a>
+                    <div class="cta__soon">
+                        <i class="bi bi-steam"></i><span>Steam</span><small data-en="Coming soon">Em breve</small><i class="bi bi-hourglass-split"></i>
+                    </div>
+                </div>
+
+                <a class="cta__releases" href="https://github.com/pedrords3/meuPortfolio/releases" target="_blank" rel="noopener" data-en="All versions and release notes ↗">Todas as versões e notas de lançamento ↗</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__top">
+            <a class="brand" href="#inicio" aria-label="Voltar ao início">
+                <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                    <rect x="7" y="9" width="34" height="46" rx="7" fill="#fff" stroke="#171717" stroke-width="4" transform="rotate(-10 24 32)" />
+                    <rect x="21" y="7" width="34" height="46" rx="7" fill="#171717" stroke="#eefe42" stroke-width="1.5" transform="rotate(8 38 30)" />
+                    <path d="M32.5 23.5a6 6 0 1 1 8.6 5.4c-2 1-3.1 2.3-3.1 4.6v1.2" fill="none" stroke="#eefe42" stroke-width="4.4" stroke-linecap="round" transform="rotate(8 38 30)" />
+                    <circle cx="38" cy="41.5" r="2.7" fill="#eefe42" transform="rotate(8 38 30)" />
+                </svg>
+                <span class="brand__text"><small>Sem</small>Contexto</span>
+            </a>
+            <p class="footer__credit"><span data-en="A game by">Um jogo de</span> <a href="https://pedrords3.github.io/meuPortfolio/" target="_blank" rel="noopener">Pedro Rodrigues ↗</a></p>
+            <div class="footer__social">
+                <a href="https://github.com/pedrords3" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://www.linkedin.com/in/pedro-rodrigues-059901126/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p data-en="© 2026 Sem Contexto · Pedro Rodrigues. All rights reserved.">© 2026 Sem Contexto · Pedro Rodrigues. Todos os direitos reservados.</p>
+            <a href="#inicio" class="to-top"><span data-en="Back to top">Voltar ao topo</span> <i class="bi bi-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <!-- Modal de mídias -->
+    <dialog class="media-dialog" id="mediaDialog" aria-labelledby="mediaDialogTitle">
+        <div class="dialog-head">
+            <h3 id="mediaDialogTitle"></h3>
+            <div class="dialog-head__nav">
+                <button class="icon-btn" type="button" data-step="-1" aria-label="Anterior"><i class="bi bi-arrow-left"></i></button>
+                <button class="icon-btn" type="button" data-step="1" aria-label="Próxima"><i class="bi bi-arrow-right"></i></button>
+                <button class="icon-btn" type="button" data-close aria-label="Fechar"><i class="bi bi-x-lg"></i></button>
+            </div>
+        </div>
+        <div class="media-dialog__body">
+            <div class="media-stage" id="mediaStage"></div>
+            <div class="media-side">
+                <div class="media-info">
+                    <span class="media-info__type" id="mediaType"></span>
+                    <h4 id="mediaTitle"></h4>
+                    <p id="mediaDescription"></p>
+                </div>
+                <div class="media-filters" role="group" aria-label="Filtro">
+                    <button type="button" class="is-active" data-filter="all" data-en="All">Todas</button>
+                    <button type="button" data-filter="video" data-en="Videos">Vídeos</button>
+                    <button type="button" data-filter="image" data-en="Images">Imagens</button>
+                </div>
+                <div class="media-thumbs" id="mediaThumbs"></div>
+            </div>
+        </div>
+    </dialog>
+
+    <noscript><style>body{overflow:auto!important}.intro{display:none}.reveal,.hero-fade,.split-char{opacity:1!important;transform:none!important}</style></noscript>
+</body>
+</html>
